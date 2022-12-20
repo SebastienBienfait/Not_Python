@@ -1,2 +1,2 @@
 # Not_Python
-Not Python Stuff
+For other projects, not done in Python.
