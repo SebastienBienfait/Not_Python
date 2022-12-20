@@ -1,0 +1,221 @@
+﻿<html>
+<head>
+    <title>OS Map Symbols Game</title>
+</head>
+<body onload="WindowStart_onLoad()">
+    OS Map Symbols<br />
+
+    <input id="btnStart" type="button" value="Start" onclick="btnStart_onClick()" />
+
+    <p id="par1"></p>
+    <pre>
+    <img id="imgView" src="" /><br />
+
+    </pre>
+    <input id="btnTrainStation" type="button" value="Train Staion" onclick="btnTrainStation_onClick()" />
+    <input id="btnBusStation" type="button" value="Bus Station" onclick="btnBusStation_onClick()" />
+    <input id="btnYouthHostel" type="button" value="Youth Hostel" onclick="btnYouthHostel_onClick()" />
+    <input id="btnFootPath" type="button" value="Footpath" onclick="btnFootPath_onClick()" />
+    <input id="btnBridleWay" type="button" value="Bridle Way" onclick="btnBridleWay_onClick()" />
+    <input id="btnPlaceOfWorship" type="button" value="Place of Worship" onclick="btnPlaceOfWorship_onClick()" />
+    <input id="btnPublicHouse" type="button" value="Public House" onclick="btnPublicHouse_onClick()" />
+    <input id="btnCarPark" type="button" value="Car Park" onclick="btnCarPark_onClick()" />
+    <input id="btnRoad" type="button" value="Road" onclick="btnRoad_onClick()" />
+    <input id="btnTriangulationPillar" type="button" value="Triangulation Pillar" onclick="btnTriangulationPillar_onClick()" />
+
+    <p></p>
+
+    <img id="imgHide" src="" /> <!-- Hidden IMG -->
+
+    <p id="parAns"></p>
+
+    <img id="imgStar1" src="star-g.GIF" />
+    <img id="imgStar2" src="star-g.GIF" />
+    <img id="imgStar3" src="star-g.GIF" />
+    <img id="imgStar4" src="star-g.GIF" />
+    <img id="imgStar5" src="star-g.GIF" />
+
+    <p></p>
+
+    <bgsound id="fail"></bgsound>
+    <bgsound id="correct"></bgsound>
+
+</body>
+</html>
+
+<script language="javascript">
+    var imgCounter; //id of score stars
+    var imgPrev; //id of previouse img
+    var imgNum; //id of displayed img
+    var imgBank = [
+        "",
+        "Railway-Station_107x160.jpg",
+        "Bus-or-Coach-Station_107x160.jpg",
+        "Youth-Hostel_107x160.jpg",
+        "Footpath_107x160.jpg",
+        "Bridleway_107x160.jpg",
+        "Place-of-Worship_107x160.jpg",
+        "Public_House.jpg",
+        "Parking_107x160.jpg",
+        "Main-Road_107x160.jpg",
+        "Triangulation Point.jpg"
+    ];
+    function fnOn() {
+        btnStart.disabled = true;
+        btnTrainStation.disabled = false;
+        btnBusStation.disabled = false;
+        btnYouthHostel.disabled = false;
+        btnFootPath.disabled = false;
+        btnBridleWay.disabled = false;
+        btnPlaceOfWorship.disabled = false;
+        btnPublicHouse.disabled = false;
+        btnCarPark.disabled = false;
+        btnRoad.disabled = false;
+        btnTriangulationPillar.disabled = false;
+    }
+    function fnOff() {
+        btnStart.disabled = false;
+        btnTrainStation.disabled = true;
+        btnBusStation.disabled = true;
+        btnYouthHostel.disabled = true;
+        btnFootPath.disabled = true;
+        btnBridleWay.disabled = true;
+        btnPlaceOfWorship.disabled = true;
+        btnPublicHouse.disabled = true;
+        btnCarPark.disabled = true;
+        btnRoad.disabled = true;
+        btnTriangulationPillar.disabled = true;
+    }
+    function imgRandom() {
+        imgNum = Math.floor((Math.random() * 10) + 1);
+        imgView.src = imgBank[imgNum]
+        imgHide.src = imgView.src //Hidden IMG
+    }
+    function Score() {        
+        parAns.innerText = "Well done, you are correct";
+        document.getElementById("imgStar" + imgCounter).src = "star-y.GIF";
+        imgCounter++
+        correct.src = "fanfare.wav";
+        if (imgCounter == 6) {
+            alert("You have won the Game!!")
+            for (i = 1; i <= 5; i++) {
+                document.getElementById("imgStar" + i).src = "star-g.GIF";
+            }
+            imgView.src = "";
+            fnOff();
+            par1.innerText = "Click Start to begin"
+            parAns.innerText = ""
+            imgCounter = "1";
+            imgHide.src = ""; //Hidden IMG 
+            
+        }              
+    }
+    function WindowStart_onLoad() {
+        par1.innerText = "Click Start to begin";
+        imgHide.style.display = "none";
+        imgCounter = 1;
+        fnOff();
+    }
+    function btnStart_onClick() {
+        btnStart.disabled = true;
+        par1.innerText = "What symbol is this?"
+        parAns.innerText = ""
+        fnOn();
+        imgRandom()
+        if (imgPrev != imgNum) {
+            imgPrev = imgNum
+        } else {
+            imgRandom()
+        }
+    }
+    function btnTrainStation_onClick() {
+        fnOff();
+        if (imgNum == 1) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnBusStation_onClick() {
+        fnOff();
+        if (imgNum == 2) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnYouthHostel_onClick() {
+        fnOff();
+        if (imgNum == 3) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnFootPath_onClick() {
+        fnOff();
+        if (imgNum == 4) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnBridleWay_onClick() {
+        fnOff();
+        if (imgNum == 5) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnPlaceOfWorship_onClick() {
+        fnOff();
+        if (imgNum == 6) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnPublicHouse_onClick() {
+        fnOff();
+        if (imgNum == 7) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnCarPark_onClick() {
+        fnOff();
+        if (imgNum == 8) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnRoad_onClick() {
+        fnOff();
+        if (imgNum == 9) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+    function btnTriangulationPillar_onClick() {
+        fnOff();
+        if (imgNum = 10) {
+            Score();
+        } else {
+            parAns.innerText = "Sorry Wrong Answer"
+            fail.src = "fart.wav"
+        }
+    }
+</script>
